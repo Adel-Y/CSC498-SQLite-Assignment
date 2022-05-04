@@ -5,6 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,6 +17,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ArrayList<String> examsArray = new ArrayList<>();
+        ListView listView = (ListView) findViewById(R.id.listView);
+
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, examsArray);
+
+        listView.setAdapter(adapter);
+
 
     try{
 
@@ -24,6 +37,16 @@ public class MainActivity extends AppCompatActivity {
         int name_index= cursor.getColumnIndex("exam_name");
         int date_index= cursor.getColumnIndex("exam_date");
 
+        cursor.moveToFirst();
+
+        while (cursor!=null){
+            String text =cursor.getString(name_index)+" on "+cursor.getString(date_index);
+//            Toast.makeText(this,text,Toast.LENGTH_LONG).show();
+            examsArray.add(text);
+
+            cursor.moveToNext();
+        }
+        listView.setAdapter(adapter);
     }catch (Exception e){
         e.printStackTrace();
     }
