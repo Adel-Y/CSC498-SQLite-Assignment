@@ -2,6 +2,7 @@ package com.csc498.mysql;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     try{
 
+        SQLiteDatabase sql = this.openOrCreateDatabase("finaldb",MODE_PRIVATE,null);
+        sql.execSQL("CREATE Table IF NOT EXISTS exams(exam_name VARCHAR, exam_date VARCHAR)");
     }catch (Exception e){
 
     }
