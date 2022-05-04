@@ -17,7 +17,7 @@ public class Webview extends AppCompatActivity {
 
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient( new WebViewClient());
-        view.loadUrl("http://www.google.com");
+        view.loadUrl("https://ionicframework.com/");
 
 
     }
