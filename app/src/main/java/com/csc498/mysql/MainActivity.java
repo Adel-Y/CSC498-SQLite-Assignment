@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
         SQLiteDatabase sql = this.openOrCreateDatabase("finaldb",MODE_PRIVATE,null);
         sql.execSQL("CREATE Table IF NOT EXISTS exams(exam_name VARCHAR, exam_date VARCHAR)");
+        sql.execSQL("INSERT INTO exams(exam_name,exam_date) VALUES('mobile computing','May 13')");
+        sql.execSQL("INSERT INTO exams(exam_name,exam_date) VALUES('microeconomics','May 7')");
     }catch (Exception e){
 
     }
